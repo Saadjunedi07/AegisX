@@ -1,97 +1,78 @@
-/* ── Mascot State Config ── */
-
 import type { MascotState, Severity } from '../../types';
+import { severityToMascotState as mapSeverityToMascotState } from '../../state/aegisEmotion';
 
 export interface MascotStateConfig {
   label: string;
-  bodyColor: string;
-  eyeColor: string;
-  sproutColor: string;
-  glowColor: string;
-  expression: 'neutral' | 'happy' | 'worried' | 'alert' | 'sleeping' | 'excited';
+  aura: string;
+  accent: string;
+  expression: 'neutral' | 'focused' | 'thinking' | 'alert' | 'panic' | 'healing' | 'happy' | 'sleeping';
+  accessory?: 'scanline' | 'question' | 'siren' | 'wrench' | 'sparkles' | 'zzz';
 }
 
 export const MASCOT_STATE_CONFIGS: Record<MascotState, MascotStateConfig> = {
   idle: {
     label: 'All systems nominal',
-    bodyColor: '#4b5563',
-    eyeColor: '#e5e7eb',
-    sproutColor: '#4ade80',
-    glowColor: 'transparent',
+    aura: 'transparent',
+    accent: '#59b83f',
     expression: 'neutral',
   },
   monitoring: {
     label: 'Monitoring systems...',
-    bodyColor: '#4b5563',
-    eyeColor: '#93c5fd',
-    sproutColor: '#4ade80',
-    glowColor: '#3b82f620',
+    aura: 'rgba(82, 183, 136, 0.18)',
+    accent: '#52b788',
     expression: 'neutral',
   },
   scanning: {
     label: 'Scanning for threats...',
-    bodyColor: '#4b5563',
-    eyeColor: '#60a5fa',
-    sproutColor: '#4ade80',
-    glowColor: '#3b82f630',
-    expression: 'neutral',
+    aura: 'rgba(59, 130, 246, 0.28)',
+    accent: '#60a5fa',
+    expression: 'focused',
+    accessory: 'scanline',
   },
   thinking: {
     label: 'Analyzing incident...',
-    bodyColor: '#4b5563',
-    eyeColor: '#fde68a',
-    sproutColor: '#fbbf24',
-    glowColor: '#facc1520',
-    expression: 'worried',
+    aura: 'rgba(250, 204, 21, 0.22)',
+    accent: '#facc15',
+    expression: 'thinking',
+    accessory: 'question',
   },
   alert: {
-    label: '⚠️ Alert detected!',
-    bodyColor: '#6b5540',
-    eyeColor: '#fca5a5',
-    sproutColor: '#f97316',
-    glowColor: '#f9731630',
+    label: 'Alert detected!',
+    aura: 'rgba(249, 115, 22, 0.3)',
+    accent: '#f97316',
     expression: 'alert',
+    accessory: 'siren',
   },
   critical: {
-    label: '🚨 CRITICAL INCIDENT!',
-    bodyColor: '#7f1d1d',
-    eyeColor: '#fecaca',
-    sproutColor: '#ef4444',
-    glowColor: '#ef444440',
-    expression: 'alert',
+    label: 'Critical incident!',
+    aura: 'rgba(239, 68, 68, 0.4)',
+    accent: '#ef4444',
+    expression: 'panic',
+    accessory: 'siren',
   },
   healing: {
     label: 'Applying fix...',
-    bodyColor: '#4b5563',
-    eyeColor: '#86efac',
-    sproutColor: '#4ade80',
-    glowColor: '#4ade8030',
-    expression: 'happy',
+    aura: 'rgba(74, 222, 128, 0.3)',
+    accent: '#4ade80',
+    expression: 'healing',
+    accessory: 'wrench',
   },
   success: {
-    label: '✅ Issue resolved!',
-    bodyColor: '#4b5563',
-    eyeColor: '#86efac',
-    sproutColor: '#4ade80',
-    glowColor: '#4ade8040',
-    expression: 'excited',
+    label: 'Issue resolved!',
+    aura: 'rgba(134, 239, 172, 0.34)',
+    accent: '#86efac',
+    expression: 'happy',
+    accessory: 'sparkles',
   },
   sleeping: {
     label: 'Zzz... All quiet',
-    bodyColor: '#374151',
-    eyeColor: '#6b7280',
-    sproutColor: '#6b7280',
-    glowColor: 'transparent',
+    aura: 'rgba(107, 114, 128, 0.16)',
+    accent: '#8b949e',
     expression: 'sleeping',
+    accessory: 'zzz',
   },
 };
 
 export function severityToMascotState(severity: Severity): MascotState {
-  switch (severity) {
-    case 'low': return 'monitoring';
-    case 'medium': return 'thinking';
-    case 'high': return 'alert';
-    case 'critical': return 'critical';
-    default: return 'idle';
-  }
+  return mapSeverityToMascotState(severity);
 }

@@ -3,18 +3,54 @@ backend/venv/
 terminal/venv/
 __pycache__/
 *.pyc
+*.pyo
 .env
+.env.local
+.env.*.local
+.env.production
+
+# Docker
+docker-compose.override.yml
+
+# Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
 
 # Node
 node_modules/
 dist/
 .vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+.project
+.pydevproject
 
 # OS
 .DS_Store
@@ -25,3 +61,11 @@ Thumbs.db
 *.dmg
 *.AppImage
 out/
+
+# Logs
+logs/
+*.log
+
+# Misc
+.cache/
+*.tmp

@@ -23,15 +23,13 @@ from widgets.metrics_panel import MetricsPanelWidget
 from widgets.mascot_display import MascotDisplayWidget
 from widgets.command_input import CommandInputWidget, CommandExecuted
 from services.api_client import APIClient
+from state.emotion_engine import (
+    AegisEmotionEngine,
+    action_result_to_event,
+    incident_to_event,
+    metrics_to_event,
+)
 from config import BACKEND_URL, WS_URL, METRICS_POLL_INTERVAL
-
-
-SEVERITY_TO_STATE = {
-    "low": "monitoring",
-    "medium": "thinking",
-    "high": "alert",
-    "critical": "critical",
-}
 
 
 class AegisXTerminal(App):
@@ -113,9 +111,16 @@ class AegisXTerminal(App):
     def __init__(self) -> None:
         super().__init__()
         self.api = APIClient()
+        self.emotions = AegisEmotionEngine()
         self._ws_task: asyncio.Task | None = None
         self._metrics_task: asyncio.Task | None = None
         self._selected_incident: dict | None = None
+
+    def set_aegis_event(self, event: str, *, force: bool = False) -> str:
+        """Apply an emotion event and render the mascot state."""
+        snapshot = self.emotions.dispatch(event, force=force)
+        self.query_one(MascotDisplayWidget).set_state(snapshot.state)
+        return snapshot.state
 
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
@@ -175,6 +180,7 @@ class AegisXTerminal(App):
             metrics = await self.api.get_metrics()
             if metrics:
                 panel.update_metrics(metrics)
+                self.set_aegis_event(metrics_to_event(metrics))
             await asyncio.sleep(METRICS_POLL_INTERVAL)
 
     async def _listen_ws(self) -> None:
@@ -194,11 +200,10 @@ class AegisXTerminal(App):
 
                         # Update mascot state
                         severity = incident.get("severity", "low")
-                        mascot = self.query_one(MascotDisplayWidget)
-                        mascot.set_state(SEVERITY_TO_STATE.get(severity, "monitoring"))
+                        self.set_aegis_event(incident_to_event(incident), force=True)
 
                         # Reset mascot to idle after 10 seconds
-                        self.set_timer(10.0, lambda: mascot.set_state("monitoring"))
+                        self.set_timer(10.0, lambda: self.set_aegis_event("default", force=True))
 
                         # Notify in log
                         sev = severity.upper()
@@ -214,15 +219,13 @@ class AegisXTerminal(App):
         """Handle incident selection — fetch AI analysis."""
         self._selected_incident = event.incident
         panel = self.query_one(AnalysisPanelWidget)
-        mascot = self.query_one(MascotDisplayWidget)
-
         panel.show_loading()
-        mascot.set_state("thinking")
+        self.set_aegis_event("analysis_started", force=True)
 
         analysis = await self.api.get_analysis(event.incident.get("id", ""))
         if analysis:
             panel.show_analysis(analysis)
-            mascot.set_state("monitoring")
+            self.set_aegis_event("default", force=True)
         else:
             panel.show_empty()
 
@@ -230,7 +233,6 @@ class AegisXTerminal(App):
         """Handle command input."""
         cmd = event.command.lower().strip()
         log = self.query_one(Log)
-        mascot = self.query_one(MascotDisplayWidget)
 
         log.write_line(f"[bold]> {event.command}[/bold]")
 
@@ -244,48 +246,47 @@ class AegisXTerminal(App):
             log.write_line("[green]✅ All systems monitored. Backend: connected.[/green]")
 
         elif action == "scan":
-            mascot.set_state("scanning")
+            self.set_aegis_event("scan_started", force=True)
             log.write_line("[blue]🔍 Running security scan...[/blue]")
             result = await self.api.execute_action("run_scan", "all-services")
             if result:
                 log.write_line(f"[green]✅ {result.get('message', 'Scan complete')}[/green]")
-                mascot.set_state("success")
-                self.set_timer(3.0, lambda: mascot.set_state("idle"))
+                self.set_aegis_event(action_result_to_event(result), force=True)
+                self.set_timer(3.0, lambda: self.set_aegis_event("default", force=True))
 
         elif action == "block" and len(parts) > 1:
             target = parts[1]
-            mascot.set_state("healing")
+            self.set_aegis_event("action_running", force=True)
             log.write_line(f"[yellow]🛡️ Blocking IP {target}...[/yellow]")
             result = await self.api.execute_action("block_ip", target)
             if result:
                 status = result.get("status", "")
                 if status == "success":
                     log.write_line(f"[green]✅ {result.get('message', '')}[/green]")
-                    mascot.set_state("success")
                 else:
                     log.write_line(f"[red]❌ {result.get('message', '')}[/red]")
-                    mascot.set_state("alert")
-                self.set_timer(3.0, lambda: mascot.set_state("idle"))
+                self.set_aegis_event(action_result_to_event(result), force=True)
+                self.set_timer(3.0, lambda: self.set_aegis_event("default", force=True))
 
         elif action == "restart" and len(parts) > 1:
             target = parts[1]
-            mascot.set_state("healing")
+            self.set_aegis_event("action_running", force=True)
             log.write_line(f"[yellow]🔄 Restarting {target}...[/yellow]")
             result = await self.api.execute_action("restart_service", target)
             if result:
                 log.write_line(f"[green]✅ {result.get('message', '')}[/green]")
-                mascot.set_state("success")
-                self.set_timer(3.0, lambda: mascot.set_state("idle"))
+                self.set_aegis_event(action_result_to_event(result), force=True)
+                self.set_timer(3.0, lambda: self.set_aegis_event("default", force=True))
 
         elif action == "kill" and len(parts) > 1:
             target = parts[1]
-            mascot.set_state("healing")
+            self.set_aegis_event("action_running", force=True)
             log.write_line(f"[red]☠️ Killing process {target}...[/red]")
             result = await self.api.execute_action("kill_process", target)
             if result:
                 log.write_line(f"[green]✅ {result.get('message', '')}[/green]")
-                mascot.set_state("success")
-                self.set_timer(3.0, lambda: mascot.set_state("idle"))
+                self.set_aegis_event(action_result_to_event(result), force=True)
+                self.set_timer(3.0, lambda: self.set_aegis_event("default", force=True))
 
         else:
             log.write_line(f"[dim]Unknown command: {cmd}. Type 'help' for available commands.[/dim]")

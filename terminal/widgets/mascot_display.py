@@ -28,6 +28,8 @@ class MascotDisplayWidget(Static):
 
     def set_state(self, state: str) -> None:
         """Change the mascot state."""
+        if state not in MASCOT_FRAMES:
+            state = "idle"
         if state != self._state:
             self._state = state
             self._frame_idx = 0

@@ -1,16 +1,16 @@
-/* ── Metrics Styles ── */
+/* ── Metrics Styles - Bento Design ── */
 
 .panel {
-  padding: 16px;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
 }
 
 .gauge {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .gaugeHeader {
@@ -20,59 +20,73 @@
 }
 
 .gaugeLabel {
-  font-size: 11px;
-  color: #9ca3af;
-  font-weight: 500;
+  font-size: 10px;
+  color: #7a8678;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.1em;
+  font-family: 'SF Display', sans-serif;
 }
 
 .gaugeValue {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   font-family: 'JetBrains Mono', monospace;
+  color: #00ff41;
 }
 
 .gaugeBar {
-  height: 6px;
-  border-radius: 3px;
-  background: rgba(75, 85, 99, 0.3);
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(26, 33, 26, 0.8);
   overflow: hidden;
+  border: 1px solid rgba(0, 255, 65, 0.15);
 }
 
 .gaugeFill {
   height: 100%;
-  border-radius: 3px;
-  transition: width 0.5s ease, background-color 0.3s ease;
+  border-radius: 4px;
+  background: linear-gradient(90deg, rgba(0, 255, 65, 0.6) 0%, rgba(0, 255, 65, 0.8) 100%);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.3);
 }
 
 .networkStats {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 4px;
+  gap: 10px;
+  margin-top: 8px;
 }
 
 .netStat {
-  padding: 8px 10px;
-  background: rgba(30, 32, 40, 0.6);
-  border-radius: 8px;
-  border: 1px solid rgba(75, 85, 99, 0.2);
+  padding: 12px;
+  background: linear-gradient(135deg, rgba(26, 33, 26, 0.4) 0%, rgba(18, 22, 18, 0.3) 100%);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 65, 0.12);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.netStat:hover {
+  border-color: rgba(0, 255, 65, 0.25);
+  background: linear-gradient(135deg, rgba(26, 33, 26, 0.6) 0%, rgba(18, 22, 18, 0.5) 100%);
+  box-shadow: 0 4px 12px rgba(0, 255, 65, 0.08);
 }
 
 .netLabel {
-  font-size: 10px;
-  color: #6b7280;
+  font-size: 9px;
+  color: #7a8678;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  font-family: 'SF Display', sans-serif;
 }
 
 .netValue {
-  font-size: 13px;
-  font-weight: 600;
-  color: #d1d5db;
+  font-size: 14px;
+  font-weight: 700;
+  color: #d7ff83;
   font-family: 'JetBrains Mono', monospace;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .loading {
@@ -80,6 +94,7 @@
   align-items: center;
   justify-content: center;
   padding: 40px;
-  color: #6b7280;
+  color: #7a8678;
   font-size: 13px;
+  font-family: 'SF Display', sans-serif;
 }

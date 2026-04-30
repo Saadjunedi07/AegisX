@@ -7,12 +7,13 @@ import styles from './actions.module.css';
 
 interface ActionBarProps {
   incident: Incident | null;
+  onActionStart?: (actionType: ActionType) => void;
   onActionComplete?: (success: boolean) => void;
 }
 
 const AVAILABLE_ACTIONS: ActionType[] = ['block_ip', 'restart_service', 'run_scan', 'kill_process', 'view_logs'];
 
-export function ActionBar({ incident, onActionComplete }: ActionBarProps) {
+export function ActionBar({ incident, onActionStart, onActionComplete }: ActionBarProps) {
   const { execute, executing, lastResult } = useActions();
 
   const handleAction = async (actionType: ActionType) => {
@@ -27,6 +28,7 @@ export function ActionBar({ incident, onActionComplete }: ActionBarProps) {
             ? 'PID-' + Math.floor(Math.random() * 9000 + 1000)
             : incident.affected_service;
 
+    onActionStart?.(actionType);
     const result = await execute(actionType, target, incident.id);
     if (onActionComplete) {
       onActionComplete(result?.status === 'success');

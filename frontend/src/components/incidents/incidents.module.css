@@ -1,73 +1,98 @@
-/* ── Incident Styles ── */
+/* ── Incident Styles - Bento Design ── */
 
 .feed {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   overflow-y: auto;
   max-height: 100%;
   padding-right: 4px;
 }
 
 .feed::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
+}
+
+.feed::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .feed::-webkit-scrollbar-thumb {
-  background: #4b556340;
+  background: linear-gradient(180deg, rgba(0, 255, 65, 0.2), rgba(0, 255, 65, 0.1));
   border-radius: 4px;
+  border: 1px solid rgba(0, 255, 65, 0.1);
+}
+
+.feed::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(0, 255, 65, 0.35), rgba(0, 255, 65, 0.2));
 }
 
 .card {
-  padding: 12px 16px;
+  padding: 12px 14px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  border-left: 3px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 255, 65, 0.08);
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(26, 33, 26, 0.4) 0%, rgba(18, 22, 18, 0.3) 100%);
+  border-left: 3px solid rgba(0, 255, 65, 0.15);
 }
 
 .card:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: linear-gradient(135deg, rgba(26, 33, 26, 0.6) 0%, rgba(18, 22, 18, 0.5) 100%);
+  border-color: rgba(0, 255, 65, 0.25);
+  border-left-color: rgba(0, 255, 65, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 255, 65, 0.08);
 }
 
 .cardSelected {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border-left-color: currentColor;
+  background: linear-gradient(135deg, rgba(26, 33, 26, 0.8) 0%, rgba(18, 22, 18, 0.7) 100%) !important;
+  border-color: rgba(0, 255, 65, 0.4) !important;
+  border-left-color: #00ff41 !important;
+  box-shadow: 0 8px 24px rgba(0, 255, 65, 0.15);
 }
 
 .cardHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .cardType {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 600;
-  font-size: 13px;
+  font-weight: 700;
+  font-size: 12px;
+  font-family: 'SF Display', 'Manrope', sans-serif;
+  letter-spacing: 0.02em;
+  color: #d7ff83;
+  text-transform: uppercase;
 }
 
 .cardTime {
-  font-size: 11px;
-  color: #6b7280;
+  font-size: 10px;
+  color: #7a8678;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.01em;
 }
 
 .cardDesc {
   font-size: 12px;
-  color: #9ca3af;
+  color: #b0b8ad;
   line-height: 1.4;
-  margin-top: 4px;
+  margin-top: 6px;
+  font-family: 'SF Display', sans-serif;
 }
 
 .cardMeta {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: 8px;
-  font-size: 11px;
-  color: #6b7280;
+  margin-top: 10px;
+  font-size: 10px;
+  color: #7a8678;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .emptyFeed {
@@ -75,9 +100,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px;
-  color: #6b7280;
+  padding: 40px 24px;
+  color: #7a8678;
   font-size: 13px;
   text-align: center;
-  gap: 8px;
+  gap: 12px;
+  font-family: 'SF Display', sans-serif;
 }

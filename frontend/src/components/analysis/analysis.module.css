@@ -1,7 +1,7 @@
-/* ── Analysis Styles ── */
+/* ── Analysis Styles - Bento Design ── */
 
 .panel {
-  padding: 20px;
+  padding: 0;
 }
 
 .loading {
@@ -10,9 +10,10 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 40px;
-  color: #facc15;
+  padding: 40px 24px;
+  color: #d7ff83;
   font-size: 13px;
+  font-family: 'SF Display', sans-serif;
 }
 
 .empty {
@@ -21,10 +22,11 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 40px;
-  color: #6b7280;
+  padding: 40px 24px;
+  color: #7a8678;
   font-size: 13px;
   text-align: center;
+  font-family: 'SF Display', sans-serif;
 }
 
 .header {
@@ -32,72 +34,92 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
+  gap: 12px;
 }
 
 .title {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
-  color: #e5e7eb;
+  color: #d7ff83;
+  font-family: 'Helvetica', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .confidence {
-  font-size: 11px;
-  color: #9ca3af;
-  background: rgba(74, 222, 128, 0.1);
-  padding: 2px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(74, 222, 128, 0.2);
+  font-size: 10px;
+  color: #00ff41;
+  background: rgba(0, 255, 65, 0.12);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 255, 65, 0.25);
+  font-weight: 700;
+  font-family: 'SF Display', sans-serif;
+  white-space: nowrap;
 }
 
 .section {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .sectionLabel {
-  font-size: 10px;
+  font-size: 9px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #6b7280;
-  margin-bottom: 6px;
-  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #7a8678;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-family: 'Helvetica', sans-serif;
 }
 
 .sectionContent {
   font-size: 13px;
-  color: #d1d5db;
+  color: #b0b8ad;
   line-height: 1.6;
+  font-family: 'SF Display', sans-serif;
 }
 
 .teamBadge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 3px 10px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  background: rgba(59, 130, 246, 0.15);
-  color: #93c5fd;
-  border: 1px solid rgba(59, 130, 246, 0.25);
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(0, 255, 65, 0.12);
+  color: #00ff41;
+  border: 1px solid rgba(0, 255, 65, 0.25);
+  font-family: 'SF Display', sans-serif;
+  margin-right: 8px;
+  margin-bottom: 8px;
 }
 
 .actionSuggestion {
-  padding: 12px;
-  background: rgba(74, 222, 128, 0.08);
-  border: 1px solid rgba(74, 222, 128, 0.2);
+  padding: 12px 14px;
+  background: linear-gradient(135deg, rgba(26, 33, 26, 0.4) 0%, rgba(18, 22, 18, 0.3) 100%);
+  border: 1px solid rgba(0, 255, 65, 0.15);
   border-radius: 10px;
-  font-size: 13px;
-  color: #86efac;
+  font-size: 12px;
+  color: #d7ff83;
   line-height: 1.5;
+  font-family: 'SF Display', sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.actionSuggestion:hover {
+  border-color: rgba(0, 255, 65, 0.3);
+  background: linear-gradient(135deg, rgba(26, 33, 26, 0.6) 0%, rgba(18, 22, 18, 0.5) 100%);
+  box-shadow: 0 4px 12px rgba(0, 255, 65, 0.1);
 }
 
 .spinner {
   width: 24px;
   height: 24px;
-  border: 2px solid #facc1530;
-  border-top-color: #facc15;
+  border: 2px solid rgba(0, 255, 65, 0.2);
+  border-top-color: #00ff41;
   border-radius: 50%;
-  animation: spin 0.7s linear infinite;
+  animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {

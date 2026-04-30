@@ -1,4 +1,4 @@
-/* ── Chat Styles ── */
+/* ── Chat Styles - Bento Design ── */
 
 .panel {
   display: flex;
@@ -12,94 +12,122 @@
   padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .messages::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .messages::-webkit-scrollbar-thumb {
-  background: #4b556340;
+  background: linear-gradient(180deg, rgba(0, 255, 65, 0.2), rgba(0, 255, 65, 0.1));
   border-radius: 4px;
+  border: 1px solid rgba(0, 255, 65, 0.1);
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(0, 255, 65, 0.35), rgba(0, 255, 65, 0.2));
 }
 
 .message {
   max-width: 85%;
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-size: 13px;
+  padding: 11px 13px;
+  border-radius: 10px;
+  font-size: 12px;
   line-height: 1.5;
-  animation: fadeSlide 0.3s ease;
+  font-family: 'SF Display', sans-serif;
+  animation: fadeSlide 0.3s ease-out;
+  border: 1px solid;
 }
 
 .messageUser {
   align-self: flex-end;
-  background: rgba(59, 130, 246, 0.2);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  color: #bfdbfe;
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.15) 0%, rgba(0, 200, 50, 0.1) 100%);
+  border-color: rgba(0, 255, 65, 0.25);
+  color: #d7ff83;
   border-bottom-right-radius: 4px;
 }
 
 .messageAssistant {
   align-self: flex-start;
-  background: rgba(75, 85, 99, 0.25);
-  border: 1px solid rgba(75, 85, 99, 0.3);
-  color: #d1d5db;
+  background: linear-gradient(135deg, rgba(26, 33, 26, 0.5) 0%, rgba(18, 22, 18, 0.4) 100%);
+  border-color: rgba(0, 255, 65, 0.15);
+  color: #b0b8ad;
   border-bottom-left-radius: 4px;
 }
 
 .messageSystem {
   align-self: center;
-  background: rgba(74, 222, 128, 0.1);
-  border: 1px solid rgba(74, 222, 128, 0.2);
-  color: #86efac;
-  font-size: 11px;
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.12) 0%, rgba(0, 200, 50, 0.08) 100%);
+  border-color: rgba(0, 255, 65, 0.25);
+  color: #00ff41;
+  font-size: 10px;
+  font-weight: 700;
   max-width: 95%;
   text-align: center;
+  font-family: 'Helvetica', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .inputArea {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   padding: 12px;
-  border-top: 1px solid rgba(75, 85, 99, 0.2);
+  border-top: 1px solid rgba(0, 255, 65, 0.1);
 }
 
 .input {
   flex: 1;
-  background: rgba(30, 32, 40, 0.8);
-  border: 1px solid rgba(75, 85, 99, 0.3);
+  background: rgba(18, 22, 18, 0.6);
+  border: 1px solid rgba(0, 255, 65, 0.15);
   border-radius: 10px;
   padding: 10px 14px;
-  color: #e5e7eb;
-  font-size: 13px;
+  color: #d7ff83;
+  font-size: 12px;
+  font-family: 'SF Display', sans-serif;
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .input:focus {
-  border-color: rgba(74, 222, 128, 0.5);
+  border-color: rgba(0, 255, 65, 0.35);
+  background: rgba(18, 22, 18, 0.8);
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.1);
 }
 
 .input::placeholder {
-  color: #6b7280;
+  color: #7a8678;
 }
 
 .sendButton {
   padding: 10px 16px;
   border-radius: 10px;
-  background: rgba(74, 222, 128, 0.2);
-  border: 1px solid rgba(74, 222, 128, 0.3);
-  color: #4ade80;
-  font-size: 13px;
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.2) 0%, rgba(0, 200, 50, 0.15) 100%);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  color: #00ff41;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Helvetica', sans-serif;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .sendButton:hover {
-  background: rgba(74, 222, 128, 0.3);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.35) 0%, rgba(0, 200, 50, 0.25) 100%);
+  border-color: rgba(0, 255, 65, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 255, 65, 0.15);
+}
+
+.sendButton:active {
+  transform: translateY(0);
 }
 
 .empty {
@@ -107,11 +135,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 40px;
-  color: #6b7280;
-  font-size: 13px;
+  gap: 12px;
+  padding: 40px 24px;
+  color: #7a8678;
+  font-size: 12px;
   text-align: center;
+  font-family: 'SF Display', sans-serif;
 }
 
 @keyframes fadeSlide {

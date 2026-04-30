@@ -1,24 +1,44 @@
 /* ── AegisX Global Styles ── */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@500;700;800&family=Press+Start+2P&family=Space+Grotesk:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'SF Display';
+  src: url('https://cdn.jsdelivr.net/npm/sf-pro-display@1.0.0/SFPRODISPLAYREGULAR.woff2') format('woff2');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('https://cdn.jsdelivr.net/npm/helvetica-font@1.0.0/Helvetica.woff2') format('woff2');
+  font-weight: 700;
+}
 
 /* ── Custom Theme Variables ── */
 :root {
-  --aegis-bg: #0a0b0f;
-  --aegis-surface: #12141a;
-  --aegis-surface-2: #1a1c24;
-  --aegis-border: rgba(75, 85, 99, 0.25);
-  --aegis-text: #e5e7eb;
-  --aegis-text-dim: #9ca3af;
-  --aegis-green: #4ade80;
-  --aegis-red: #ef4444;
-  --aegis-yellow: #facc15;
-  --aegis-blue: #3b82f6;
-  --aegis-orange: #f97316;
-  --aegis-rock: #4b5563;
+  --aegis-bg: #0a0d0a;
+  --aegis-surface: #121612;
+  --aegis-surface-2: #1a211a;
+  --aegis-surface-3: #23292a;
+  --aegis-border: rgba(0, 255, 65, 0.15);
+  --aegis-border-light: rgba(0, 255, 65, 0.08);
+  --aegis-text: #f0f4ec;
+  --aegis-text-dim: #95a599;
+  --aegis-text-darker: #7a8678;
+  --aegis-green: #00ff41;
+  --aegis-green-dark: #00cc35;
+  --aegis-green-light: #33ff66;
+  --aegis-green-faint: rgba(0, 255, 65, 0.08);
+  --aegis-mint: #00ff66;
+  --aegis-lime: #d7ff83;
+  --aegis-red: #ef5f52;
+  --aegis-yellow: #ffd65e;
+  --aegis-blue: #62d8ff;
+  --aegis-orange: #f48b4c;
+  --aegis-cream: #f3f6ec;
 }
-
-/* ── Google Font ── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* ── Base Resets ── */
 *,
@@ -35,14 +55,35 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'SF Display', 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--aegis-bg);
   color: var(--aegis-text);
-  line-height: 1.6;
+  line-height: 1.45;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  overflow-x: hidden;
   min-height: 100vh;
+}
+
+/* ── Font Classes ── */
+.font-display {
+  font-family: 'SF Display', 'Manrope', sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.font-display-bold {
+  font-family: 'Helvetica', 'Coolvetica', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.font-display-xl {
+  font-family: 'Helvetica', 'Coolvetica', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
 }
 
 /* ── Background Pattern ── */
@@ -51,11 +92,25 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(74, 222, 128, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(250, 204, 21, 0.02) 0%, transparent 50%);
+    radial-gradient(circle at 15% 25%, rgba(0, 255, 65, 0.08) 0%, transparent 35%),
+    radial-gradient(circle at 85% 10%, rgba(0, 255, 65, 0.06) 0%, transparent 30%),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.1) 0%, transparent 40%),
+    linear-gradient(135deg, #0a0d0a 0%, #0d100d 50%, #0a0d0a 100%);
   pointer-events: none;
   z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(0, 255, 65, 0.08) 0 0.5px, transparent 0.5px),
+    radial-gradient(circle at 85% 10%, rgba(0, 255, 65, 0.06) 0 0.5px, transparent 0.5px);
+  background-size: 21px 21px, 27px 27px;
+  opacity: 0.04;
+  pointer-events: none;
+  mix-blend-mode: screen;
 }
 
 #root {
@@ -66,21 +121,167 @@ body::before {
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(75, 85, 99, 0.3);
+  background: rgba(0, 255, 65, 0.05);
   border-radius: 3px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(75, 85, 99, 0.5);
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--aegis-green), var(--aegis-green-dark));
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
 }
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--aegis-green-light), var(--aegis-green));
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+}
+
+/* ── Bento Card Styles ── */
+.bento-card {
+  background: linear-gradient(135deg, rgba(18, 22, 18, 0.8) 0%, rgba(26, 33, 26, 0.6) 100%);
+  border: 1px solid var(--aegis-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bento-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(0, 255, 65, 0.03) 100%);
+  pointer-events: none;
+}
+
+.bento-card:hover {
+  border-color: var(--aegis-green);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.15), inset 0 0 20px rgba(0, 255, 65, 0.05);
+  transform: translateY(-2px);
+}
+
+/* ── Glass Panel ── */
+.glass-panel {
+  background: rgba(18, 22, 18, 0.4);
+  border: 1px solid var(--aegis-border-light);
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+}
+
+/* ── Gradients ── */
+.gradient-green {
+  background: linear-gradient(135deg, var(--aegis-green) 0%, var(--aegis-green-dark) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-green-glow {
+  background: linear-gradient(135deg, var(--aegis-green) 0%, var(--aegis-green-light) 100%);
+  filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.3));
+}
+
+.gradient-border {
+  position: relative;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  background: linear-gradient(135deg, rgba(18, 22, 18, 0.8), rgba(26, 33, 26, 0.6)) padding-box,
+              linear-gradient(135deg, var(--aegis-green), var(--aegis-green-dark)) border-box;
+}
+
+/* ── Glow Effects ── */
+.glow-sm {
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+}
+
+.glow-md {
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.25);
+}
+
+.glow-lg {
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.3), 0 0 60px rgba(0, 255, 65, 0.1);
+}
+
+.glow-animation {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 255, 65, 0.35);
+  }
+}
+
+/* ── Status Indicators ── */
+.status-online {
+  background: var(--aegis-green);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.status-offline {
+  background: var(--aegis-text-darker);
+}
+
+.status-warning {
+  background: var(--aegis-yellow);
+}
+
+.status-critical {
+  background: var(--aegis-red);
+}
+
+/* ── Animations ── */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
 
 /* ── Selection ── */
 ::selection {
@@ -91,4 +292,12 @@ body::before {
 /* ── Code font ── */
 code, pre, .mono {
   font-family: 'JetBrains Mono', monospace;
+}
+
+.display-font {
+  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+}
+
+.pixel-font {
+  font-family: 'Press Start 2P', 'JetBrains Mono', monospace;
 }

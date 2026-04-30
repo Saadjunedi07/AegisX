@@ -1,203 +1,210 @@
-"""ASCII art frames for the Aegis mascot in various states.
+"""ANSI frame animations for Aegis.
 
-Each state has multiple frames for animation cycling.
-The mascot is a cute rock-like creature with a sprout on top.
+The terminal avatar follows the same reference design as the Web mascot:
+grey rocky upper half, beige stone lower half, tiny black dot eyes, short rock
+arms and legs, a moss patch on the top-right, and a small green sprout.
 """
 
 IDLE_FRAMES = [
     r"""
-  [green]  ,~.[/green]
-  [green] /  |[/green]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [white]◕  ◕[/white] [grey62]│[/grey62]
- [grey62]│[/grey62]  [white]‿[/white]  [grey62]│[/grey62]
- [grey62]╰──────╯[/grey62]
+        [green]^^[/green]
+      [green]/##\[/green]
+   [grey62]_/########\_[/grey62][green]@@@[/green]
+ [grey62]/############\[/grey62][green]@@@@[/green]
+[grey62]o##[/grey62][black].[/black][grey62]#######[/grey62][black].[/black][grey62]##o[/grey62]
+ [tan]/##[/tan][grey35]__[/grey35][tan]######[/tan][grey35]__[/grey35][tan]##\[/tan]
+ [tan]\##############/[/tan]
+     [grey50]||[/grey50]      [grey50]||[/grey50]
 """,
     r"""
-  [green]  ,~.[/green]
-  [green] /  |[/green]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [white]◕  ◕[/white] [grey62]│[/grey62]
- [grey62]│[/grey62]  [white]‿[/white]  [grey62]│[/grey62]
- [grey62]╰──────╯[/grey62]
+        [green]^^[/green]
+      [green]\##/[/green]
+   [grey62]_/########\_[/grey62][green]@@@[/green]
+ [grey62]/############\[/grey62][green]@@@@[/green]
+[grey62]o##[/grey62][black].[/black][grey62]#######[/grey62][black].[/black][grey62]##o[/grey62]
+ [tan]/##[/tan][grey35]__[/grey35][tan]######[/tan][grey35]__[/grey35][tan]##\[/tan]
+ [tan]\##############/[/tan]
+    [grey50]||[/grey50]        [grey50]||[/grey50]
 """,
     r"""
-  [green]  ,~.[/green]
-  [green] /  |[/green]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [white]─  ─[/white] [grey62]│[/grey62]
- [grey62]│[/grey62]  [white]‿[/white]  [grey62]│[/grey62]
- [grey62]╰──────╯[/grey62]
+        [green]^^[/green]
+      [green]/##\[/green]
+   [grey62]_/########\_[/grey62][green]@@@[/green]
+ [grey62]/############\[/grey62][green]@@@@[/green]
+[grey62]o##[/grey62][black]-[/black][grey62]#######[/grey62][black]-[/black][grey62]##o[/grey62]
+ [tan]/##[/tan][grey35]__[/grey35][tan]######[/tan][grey35]__[/grey35][tan]##\[/tan]
+ [tan]\##############/[/tan]
+     [grey50]||[/grey50]      [grey50]||[/grey50]
 """,
 ]
 
 SCANNING_FRAMES = [
     r"""
-  [blue]  ,~.[/blue]
-  [blue] /  |[/blue]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [dodger_blue1]◉  ◕[/dodger_blue1] [grey62]│[/grey62]
- [grey62]│[/grey62]  [white]─[/white]  [grey62]│[/grey62]
- [grey62]╰──────╯[/grey62]
-   [blue]▓▓▓[/blue]
+        [green]^^[/green]   [dodger_blue1]scan[/dodger_blue1]
+      [green]/##\[/green] [dodger_blue1]-----[/dodger_blue1]
+   [grey62]_/########\_[/grey62][green]@@@[/green]
+ [grey62]/############\[/grey62][green]@@@@[/green]
+[grey62]o#[/grey62][dodger_blue1]>[/dodger_blue1][grey62]########[/grey62][dodger_blue1]<[/dodger_blue1][grey62]#o[/grey62]
+ [tan]/##[/tan][dodger_blue1]==========[/dodger_blue1][tan]##\[/tan]
+ [tan]\##############/[/tan]
+     [grey50]||[/grey50]      [grey50]||[/grey50]
 """,
     r"""
-  [blue]  ,~.[/blue]
-  [blue] /  |[/blue]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [dodger_blue1]◕  ◉[/dodger_blue1] [grey62]│[/grey62]
- [grey62]│[/grey62]  [white]─[/white]  [grey62]│[/grey62]
- [grey62]╰──────╯[/grey62]
-   [blue]░▓░[/blue]
-""",
-    r"""
-  [blue]  .~,[/blue]
-  [blue] |  \[/blue]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [dodger_blue1]◉  ◕[/dodger_blue1] [grey62]│[/grey62]
- [grey62]│[/grey62]  [white]─[/white]  [grey62]│[/grey62]
- [grey62]╰──────╯[/grey62]
-   [blue]▓░▓[/blue]
+        [green]^^[/green]
+      [green]\##/[/green]     [dodger_blue1]///[/dodger_blue1]
+   [grey62]_/########\_[/grey62][green]@@@[/green]
+ [grey62]/[/grey62][dodger_blue1]==========[/dodger_blue1][grey62]\[/grey62][green]@@@@[/green]
+[grey62]o#[/grey62][dodger_blue1]>[/dodger_blue1][grey62]########[/grey62][dodger_blue1]<[/dodger_blue1][grey62]#o[/grey62]
+ [tan]/##############\[/tan]
+ [tan]\##############/[/tan]
+     [grey50]||[/grey50]      [grey50]||[/grey50]
 """,
 ]
 
 THINKING_FRAMES = [
     r"""
-  [yellow]  ,~.  [/yellow][yellow]?[/yellow]
-  [yellow] /  |[/yellow]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [yellow]◑  ◑[/yellow] [grey62]│[/grey62]
- [grey62]│[/grey62]  [yellow]~[/yellow]  [grey62]│[/grey62]
- [grey62]╰──────╯[/grey62]
+        [green]^^[/green]       [yellow]?[/yellow]
+      [green]/##\[/green]    [yellow]...[/yellow]
+   [grey62]_/########\_[/grey62][green]@@@[/green]
+ [grey62]/############\[/grey62][green]@@@@[/green]
+[grey62]o##[/grey62][black].[/black][grey62]#######[/grey62][black].[/black][grey62]##o[/grey62]
+ [tan]/#####~########\[/tan]
+ [tan]\##############/[/tan]
+     [grey50]||[/grey50]      [grey50]||[/grey50]
 """,
     r"""
-  [yellow]  ,~. [/yellow][yellow]??[/yellow]
-  [yellow] /  |[/yellow]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [yellow]◑  ◑[/yellow] [grey62]│[/grey62]
- [grey62]│[/grey62]  [yellow]=[/yellow]  [grey62]│[/grey62]
- [grey62]╰──────╯[/grey62]
-""",
-    r"""
-  [yellow]  .~,[/yellow] [yellow]💡[/yellow]
-  [yellow] |  \[/yellow]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [yellow]◑  ◑[/yellow] [grey62]│[/grey62]
- [grey62]│[/grey62]  [yellow]o[/yellow]  [grey62]│[/grey62]
- [grey62]╰──────╯[/grey62]
+      [yellow]?[/yellow] [green]^^[/green]
+      [green]\##/[/green]      [yellow]..[/yellow]
+   [grey62]_/########\_[/grey62][green]@@@[/green]
+ [grey62]/############\[/grey62][green]@@@@[/green]
+[grey62]o##[/grey62][black].[/black][grey62]#######[/grey62][black].[/black][grey62]##o[/grey62]
+ [tan]/######o#######\[/tan]
+ [tan]\##############/[/tan]
+    [grey50]||[/grey50]        [grey50]||[/grey50]
 """,
 ]
 
 ALERT_FRAMES = [
     r"""
-  [red bold]  ⚠️ !![/red bold]
-  [orange1]  ,~.[/orange1]
-  [orange1] /  |[/orange1]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [red]●  ●[/red] [grey62]│[/grey62]
- [grey62]│[/grey62]  [red]○[/red]  [grey62]│[/grey62]
- [grey62]╰──────╯[/grey62]
+    [red bold]ALERT[/red bold]     [red]|>[/red]
+        [green]^^[/green]
+      [green]/##\[/green]
+   [red]_/########\_[/red][green]@@@[/green]
+ [grey62]/############\[/grey62][green]@@@@[/green]
+[grey62]o##[/grey62][red bold]o[/red bold][grey62]#######[/grey62][red bold]o[/red bold][grey62]##o[/grey62]
+ [tan]/######O#######\[/tan]
+ [tan]\##############/[/tan]
+     [grey50]||[/grey50]      [grey50]||[/grey50]
 """,
     r"""
-  [red bold]  ⚡ !![/red bold]
-  [orange1]  .~,[/orange1]
-  [orange1] |  \[/orange1]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [red]◉  ◉[/red] [grey62]│[/grey62]
- [grey62]│[/grey62]  [red]o[/red]  [grey62]│[/grey62]
- [grey62]╰──────╯[/grey62]
+    [red bold]ALERT[/red bold]   [red]|>[/red]
+        [green]^^[/green]
+      [green]\##/[/green]
+   [grey62]_/########\_[/grey62][green]@@@[/green]
+ [red]/############\[/red][green]@@@@[/green]
+[grey62]o##[/grey62][red bold]O[/red bold][grey62]#######[/grey62][red bold]O[/red bold][grey62]##o[/grey62]
+ [tan]/######o#######\[/tan]
+ [tan]\##############/[/tan]
+    [grey50]||[/grey50]        [grey50]||[/grey50]
 """,
 ]
 
 CRITICAL_FRAMES = [
     r"""
- [red bold] 🚨 CRITICAL 🚨[/red bold]
-  [red]  ,~.[/red]
-  [red] /  |[/red]
- [red]╭──────╮[/red]
- [red]│[/red] [white bold]◎  ◎[/white bold] [red]│[/red]
- [red]│[/red]  [white bold]▢[/white bold]  [red]│[/red]
- [red]╰──────╯[/red]
-  [red]▓▓▓▓▓▓[/red]
+   [red bold]CRITICAL THREAT[/red bold]
+        [red]^^[/red]      [red]|>[/red]
+      [red]/##\[/red]
+   [red]_/########\_[/red][green]@@@[/green]
+ [red]/############\[/red][green]@@@@[/green]
+[red]o##[/red][white bold]O[/white bold][red]#######[/red][white bold]O[/white bold][red]##o[/red]
+ [tan]/#####[red]!!![/red][tan]######\[/tan]
+ [tan]\##############/[/tan]
+    [red]||[/red]        [red]||[/red]
 """,
     r"""
- [red bold] 🔴 CRITICAL 🔴[/red bold]
-  [red]  .~,[/red]
-  [red] |  \[/red]
- [red]╭──────╮[/red]
- [red]│[/red] [white bold]◉  ◉[/white bold] [red]│[/red]
- [red]│[/red]  [white bold]□[/white bold]  [red]│[/red]
- [red]╰──────╯[/red]
-  [red]░░░░░░[/red]
+ [red bold]!! CRITICAL THREAT !![/red bold]
+        [red]^^[/red]   [red]|>[/red]
+      [red]\##/[/red]
+   [red]_/########\_[/red][green]@@@[/green]
+ [red]/############\[/red][green]@@@@[/green]
+[red]o##[/red][white bold]0[/white bold][red]#######[/red][white bold]0[/white bold][red]##o[/red]
+ [tan]/#####[red]!!![/red][tan]######\[/tan]
+ [tan]\##############/[/tan]
+     [red]||[/red]      [red]||[/red]
 """,
 ]
 
 HEALING_FRAMES = [
     r"""
-  [green]  ,~.  ✨[/green]
-  [green] /  |[/green]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [green]◕  ◕[/green] [grey62]│[/grey62]
- [grey62]│[/grey62]  [green]‿[/green]  [grey62]│[/grey62]
- [grey62]╰──────╯[/grey62]
-  [green] 🔧[/green]
+        [green]^^[/green]       [green]+[/green]
+      [green]/##\[/green]   [grey85]==O[/grey85]
+   [grey62]_/########\_[/grey62][green]@@@[/green]
+ [grey62]/############\[/grey62][green]@@@@[/green]
+[grey62]o##[/grey62][black].[/black][grey62]#######[/grey62][black].[/black][grey62]##o[/grey62]
+ [tan]/#####[green]___[/green][tan]######\[/tan]
+ [tan]\##############/[/tan]
+     [grey50]||[/grey50]      [grey50]||[/grey50]
 """,
     r"""
-  [green]  .~, ✨[/green]
-  [green] |  \[/green]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [green]◕  ◕[/green] [grey62]│[/grey62]
- [grey62]│[/grey62]  [green]‿[/green]  [grey62]│[/grey62]
- [grey62]╰──────╯[/grey62]
-  [green]  🔧[/green]
+     [green]+[/green]  [green]^^[/green]
+      [green]\##/[/green]     [grey85]O==[/grey85]
+   [grey62]_/########\_[/grey62][green]@@@[/green]
+ [grey62]/############\[/grey62][green]@@@@[/green]
+[grey62]o##[/grey62][black].[/black][grey62]#######[/grey62][black].[/black][grey62]##o[/grey62]
+ [tan]/#####[green]\_/[/green][tan]######\[/tan]
+ [tan]\##############/[/tan]
+    [grey50]||[/grey50]        [grey50]||[/grey50]
 """,
 ]
 
 SUCCESS_FRAMES = [
     r"""
-   [green bold]  ⭐[/green bold]
-  [green]  ,~.[/green]
-  [green] /  |[/green]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [green]◕  ◕[/green] [grey62]│[/grey62]
- [grey62]│[/grey62]  [green]▽[/green]  [grey62]│[/grey62]
- [grey62]╰──╮╭──╯[/grey62]
-    [grey62]╰╯[/grey62] [green]🎉[/green]
+    [green bold]*[/green bold]   [green]^^[/green]    [green bold]*[/green bold]
+      [green]/##\[/green]
+   [grey62]_/########\_[/grey62][green]@@@[/green]
+ [grey62]/############\[/grey62][green]@@@@[/green]
+[grey62]o##[/grey62][black]-[/black][grey62]#######[/grey62][black]-[/black][grey62]##o[/grey62]
+ [tan]/#####[black]\_/[/black][tan]######\[/tan]
+ [tan]\##############/[/tan]
+   [grey50]||[/grey50]          [grey50]||[/grey50]
 """,
     r"""
-  [green bold] ✨  ⭐[/green bold]
-  [green]  .~,[/green]
-  [green] |  \[/green]
- [grey62]╭──────╮[/grey62]
- [grey62]│[/grey62] [green]^  ^[/green] [grey62]│[/grey62]
- [grey62]│[/grey62]  [green]▽[/green]  [grey62]│[/grey62]
- [grey62]╰─╮──╭─╯[/grey62]
-  [grey62]╰──╯[/grey62] [green]💚[/green]
+  [green bold]*[/green bold]       [green]^^[/green] [green bold]*[/green bold]
+      [green]\##/[/green]
+   [grey62]_/########\_[/grey62][green]@@@[/green]
+ [grey62]/############\[/grey62][green]@@@@[/green]
+[grey62]o##[/grey62][black]^[/black][grey62]#######[/grey62][black]^[/black][grey62]##o[/grey62]
+ [tan]/#####[black]\_/[/black][tan]######\[/tan]
+ [tan]\##############/[/tan]
+      [grey50]||[/grey50]  [grey50]||[/grey50]
 """,
 ]
 
 SLEEPING_FRAMES = [
     r"""
-  [grey50]  ,~.[/grey50]
-  [grey50] /  |[/grey50]    [grey50]z[/grey50]
- [grey42]╭──────╮[/grey42]
- [grey42]│[/grey42] [grey50]─  ─[/grey50] [grey42]│[/grey42]  [grey50]z[/grey50]
- [grey42]│[/grey42]  [grey50]‿[/grey50]  [grey42]│[/grey42]
- [grey42]╰──────╯[/grey42] [grey50]z[/grey50]
+        [grey50]^^[/grey50]        [grey50]Z[/grey50]
+      [grey50]/##\[/grey50]     [grey50]z[/grey50]
+   [grey50]_/########\_[/grey50][green4]@@@[/green4]
+ [grey50]/############\[/grey50][green4]@@@@[/green4]
+[grey50]o##[/grey50][grey30]-[/grey30][grey50]#######[/grey50][grey30]-[/grey30][grey50]##o[/grey50]
+ [tan]/#####_########\[/tan]
+ [tan]\##############/[/tan]
+     [grey35]||[/grey35]      [grey35]||[/grey35]
 """,
     r"""
-  [grey50]  ,~.[/grey50]
-  [grey50] /  |[/grey50]     [grey50]z[/grey50]
- [grey42]╭──────╮[/grey42]
- [grey42]│[/grey42] [grey50]─  ─[/grey50] [grey42]│[/grey42]   [grey50]z[/grey50]
- [grey42]│[/grey42]  [grey50]‿[/grey50]  [grey42]│[/grey42]
- [grey42]╰──────╯[/grey42]  [grey50]z[/grey50]
+        [grey50]^^[/grey50]      [grey50]z[/grey50]
+      [grey50]\##/[/grey50]       [grey50]Z[/grey50]
+   [grey50]_/########\_[/grey50][green4]@@@[/green4]
+ [grey50]/############\[/grey50][green4]@@@@[/green4]
+[grey50]o##[/grey50][grey30]-[/grey30][grey50]#######[/grey50][grey30]-[/grey30][grey50]##o[/grey50]
+ [tan]/#####_########\[/tan]
+ [tan]\##############/[/tan]
+    [grey35]||[/grey35]        [grey35]||[/grey35]
 """,
 ]
 
-MONITORING_FRAMES = IDLE_FRAMES  # reuse idle for monitoring
+MONITORING_FRAMES = IDLE_FRAMES
 
-# Master frame map
 MASCOT_FRAMES: dict[str, list[str]] = {
     "idle": IDLE_FRAMES,
     "monitoring": MONITORING_FRAMES,

@@ -185,6 +185,32 @@ class IncidentEngine:
                 return incident
         return None
 
+    async def create_incident(
+        self,
+        incident_type: str,
+        severity: str,
+        source_ip: str,
+        affected_service: str,
+        description: str,
+    ) -> Incident:
+        """Create and broadcast a custom incident (for testing)."""
+        incident = Incident(
+            type=IncidentType(incident_type),
+            severity=Severity(severity),
+            source_ip=source_ip,
+            affected_service=affected_service,
+            description=description,
+            timestamp=datetime.now(),
+        )
+        self.incidents.append(incident)
+
+        # Keep only last 100 incidents in memory
+        if len(self.incidents) > 100:
+            self.incidents = self.incidents[-100:]
+
+        await self._broadcast(incident)
+        return incident
+
 
 # Singleton instance
 incident_engine = IncidentEngine()
